@@ -1,6 +1,8 @@
 import { Component, Inject } from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { User } from '../model/user';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-add-user',
@@ -18,7 +20,14 @@ export class AddUserComponent {
   }
 
   save() {
-    this.dialogRef.close(this.user);
+    let newUser = new User();
+    newUser.name = this.user.name;
+    newUser.lastname = this.user.lastname;
+    newUser.email = this.user.email;
+    newUser.identifier = this.user.identifier;
+    newUser.tel = this.user.tel;
+    newUser.birthdate = moment(this.user.birthdate).format('YYYY-MM-DD');
+    this.dialogRef.close(newUser);
   }
 
   close() {

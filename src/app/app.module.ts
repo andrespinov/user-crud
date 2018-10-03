@@ -8,6 +8,11 @@ import { AppComponent } from './app.component';
 import { UsersComponent } from './users/users.component';
 import { AddUserComponent } from './add-user/add-user.component';
 
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+
+import { environment } from '../environments/environment';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,7 +23,9 @@ import { AddUserComponent } from './add-user/add-user.component';
     BrowserModule,
     MaterialModule,
     BrowserAnimationsModule,
-    FormsModule
+    FormsModule,
+    AngularFireModule.initializeApp(environment.firebase, 'user-crud'),
+    AngularFireDatabaseModule
   ],
   entryComponents: [ AddUserComponent ],
   providers: [],
