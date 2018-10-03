@@ -10,6 +10,7 @@
 
 # build folder
 /dist
+/public
 
 # IDEs and editors
 /.idea
