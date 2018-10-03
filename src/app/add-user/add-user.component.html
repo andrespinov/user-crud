@@ -1,6 +1,40 @@
 <h2 mat-dialog-title>Agregar usuario</h2>
 
 <mat-dialog-content>
+    <form class="center-xs">
+        <p>
+            <mat-form-field >
+                <input matInput placeholder="Nombres" [(ngModel)]="user.name" name="name" required>
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field>
+                <input matInput placeholder="Apellidos" [(ngModel)]="user.lastname" name="lastname" required>
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field>
+                <input matInput placeholder="Correo" [(ngModel)]="user.email" name="email" required>
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field>
+                <input matInput placeholder="Identificación" [(ngModel)]="user.identifier" name="identifier" required>
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field>
+                <input matInput placeholder="Teléfono" [(ngModel)]="user.tel" name="tel" required>
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field>
+                <input matInput [matDatepicker]="picker" placeholder="Fecha de nacimiento" [(ngModel)]="user.birthdate" name="birthdate" required>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+        </p>
+    </form>
 </mat-dialog-content>
 
 <mat-dialog-actions>

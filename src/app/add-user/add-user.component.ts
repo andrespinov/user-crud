@@ -10,16 +10,15 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 export class AddUserComponent {
     form: FormGroup;
     description:string;
-    user: string = "";
+    user: any = {};
 
-  constructor(private fb: FormBuilder,
+  constructor(
     private dialogRef: MatDialogRef<AddUserComponent>,
     @Inject(MAT_DIALOG_DATA) data) {
-      this.description = data.description;
   }
 
   save() {
-    this.dialogRef.close(this.form.value);
+    this.dialogRef.close(this.user);
   }
 
   close() {

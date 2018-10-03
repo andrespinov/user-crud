@@ -26,13 +26,11 @@ export class UsersComponent {
 
   addUser() {
     const dialogRef = this.dialog.open(AddUserComponent, {
-      width: '500px',
-      data: {name: this.user}
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
       console.log('The dialog was closed');
-      this.user = result;
     });
   }
 }
