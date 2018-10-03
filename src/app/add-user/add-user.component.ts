@@ -41,6 +41,14 @@ export class AddUserComponent {
     this.dialogRef.close(this.user);
   }
 
+  delete() {
+    let deleteData = {
+      key: this.user.$key,
+      delete: true
+    }
+    this.dialogRef.close(deleteData)
+  }
+
   close() {
     this.dialogRef.close();
   }

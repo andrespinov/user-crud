@@ -1,5 +1,5 @@
 export class User {
-    id: number;
+    $key: string;
     name: string;
     lastname: string;
     identifier: string;
