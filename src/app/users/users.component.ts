@@ -23,6 +23,24 @@ export class UsersComponent {
 
   addUser() {
     const dialogRef = this.dialog.open(AddUserComponent, {
+      data: {
+        type: 0, // For add user
+        user: {}
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.usersRef.push(result);
+    });
+  }
+
+  updateUser(x: any) {
+    console.log(x)
+    const dialogRef = this.dialog.open(AddUserComponent, {
+      data: {
+        type: 1, // For update user
+        user: x
+      }
     });
 
     dialogRef.afterClosed().subscribe(result => {

@@ -12,11 +12,18 @@ import * as moment from 'moment';
 export class AddUserComponent {
     form: FormGroup;
     description:string;
-    user: any = {};
+    user: any;
+    type: number;
+    title: string = 'Añadir';
 
   constructor(
     private dialogRef: MatDialogRef<AddUserComponent>,
-    @Inject(MAT_DIALOG_DATA) data) {
+    @Inject(MAT_DIALOG_DATA) data: any) {
+      this.user = data.user;
+      this.type = data.type;
+      if(this.type == 1) {
+        this.title = 'Actualizar';
+      }
   }
 
   save() {
@@ -28,6 +35,10 @@ export class AddUserComponent {
     newUser.tel = this.user.tel;
     newUser.birthdate = moment(this.user.birthdate).format('YYYY-MM-DD');
     this.dialogRef.close(newUser);
+  }
+
+  update() {
+    this.dialogRef.close(this.user);
   }
 
   close() {
