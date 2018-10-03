@@ -1,0 +1,12 @@
+.add-button button {
+    margin: 10px;
+}
+.users {
+    margin: auto;
+  &__item {
+    cursor: pointer;
+    &:hover {
+      background-color: #D8D8D8;
+    }
+  }
+}
