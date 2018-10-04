@@ -3,7 +3,6 @@ import { MatDialog } from '@angular/material';
 import { AddUserComponent } from '../add-user/add-user.component';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { User } from '../model/user';
-import { Observable } from 'rxjs';
 import { UserService } from '../user.service';
 
 @Component({
@@ -13,11 +12,16 @@ import { UserService } from '../user.service';
 })
 export class UsersComponent implements OnInit {
   users: User[];
+  showingUsers: User[];
   serviceUser: UserService;
   displayedColumns: any[] = ['name', 'lastname', 'identifier', 'email', 'tel', 'birthdate'];
+  spanishOptions: any[] = ['Nombre', 'Apellidos', 'Identificación', 'Correo electrónico', 'Teléfono', 'Fecha de Nacimiento']
+  filterOption: string;
+  filter: string = "";
 
   constructor(private dialog: MatDialog, db: AngularFireDatabase, userService: UserService) {
     this.serviceUser = userService;
+    this.filterOption = 'name';
    }
 
   addUser() {
@@ -50,14 +54,28 @@ export class UsersComponent implements OnInit {
     });
   }
 
+  filterUser($event) {
+    console.log(this.filterOption);
+    
+    if(this.filter == '') {
+      this.showingUsers = this.users;
+    } else {
+      this.showingUsers = this.users.filter(
+        user => user[this.filterOption].includes(this.filter)
+      )
+    }
+  }
+
   ngOnInit() {
     return this.serviceUser.getUsers()
       .snapshotChanges().subscribe(item => {
         this.users = [];
+        this.showingUsers = [];
         item.forEach(element => {
           let x = element.payload.toJSON();
           x["$key"] = element.key;
           this.users.push(x as User);
+          this.showingUsers.push(x as User);
         });
       });
   }
